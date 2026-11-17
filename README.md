@@ -1,7 +1,7 @@
 # kmod loader 文档
 
 [kmod loader](https://github.com/CCB-TEAM/KMod-Loader-Android)（KARDS 的 Lua / C++ 模组加载器，目前是 Android 版）的文档。
-站点：<https://kardswalker.github.io/kmod-docs/>
+站点：<https://CCB-TEAM.github.io/kmod-docs/>
 
 用 [mdBook](https://rust-lang.github.io/mdBook/) 构建，GitHub Actions 在每次推送到 `main` 后自动构建并发布到 GitHub Pages。
 
