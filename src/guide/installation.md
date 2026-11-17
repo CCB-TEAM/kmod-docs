@@ -7,7 +7,7 @@ kmod 以打过补丁的 APK 形式发布，不需要 root。你需要官方渠�
 
 1. 按[构建加载器](../guides/building.md)生成 `kards_mod.apk`（正式版）或 `kards_mod_dev.apk`（开发版）。
 2. 安装。补丁 APK 用你自己的签名，和官方签名不同，所以不能覆盖安装官方版：需要先卸载官方版，或者覆盖同一把签名的旧补丁版（`adb install -r`）。
-3. 启动游戏。首次启动会在 `/sdcard/Android/media/com.android1939.kardsapk/kmod/` 下创建 `mods`、`inbox`、`paks`、`data` 等目录。
+3. 启动游戏。首次启动会在 `/sdcard/Android/media/com.android1939.kardsapk/kmod/` 下创建 `mods`、`paks`、`data` 等目录。
 
 > [!WARNING]
 > 换签名后装不上官方版，卸载会清掉应用数据。安装前先备份存档。
@@ -20,21 +20,23 @@ kmod 的所有文件都放在手机的共享存储里：
 
 ```
 /sdcard/Android/media/com.android1939.kardsapk/kmod/
-├── mods/<id>/          # 已安装的模组（文件夹形式）
+├── mods/               # 模组：文件夹，或 .kmod 文件（启动时同步到应用私有目录再加载）
 ├── paks/               # pak 模组（启动时自动挂载）
 ├── data/<id>/          # 模组的用户数据（设置值）
-├── inbox/              # 放 .kmod 包，下次启动或打开 Mods 页时自动安装
 ├── logs/               # kmod.log 等日志
 ├── state.json          # 启用列表和语言
 └── dev/                # 仅开发版使用
 ```
 
-**装模组就是把文件放进去**：把模组文件夹放进 `mods/`，或把 `.kmod` 文件放进 `inbox/`，不需要 `adb`。可以用手机的文件管理器，也可以用 USB 连电脑，或者 `adb push`。
+**装模组就是把文件放进去**：把模组文件夹或 `.kmod` 文件放进 `mods/`，不需要 `adb`。可以用手机的文件管理器，也可以用 USB 连电脑，或者 `adb push`。下次启动游戏、或者打开 Mods 页时，加载器把它们同步到应用的私有目录（文件夹复制，`.kmod` 自动解压），再从那里加载。共享存储上的文件原样保留，改了或删掉，下次同步时私有副本跟着更新或删除。
+
+> [!NOTE]
+> 为什么要复制：共享存储（`Android/media`）在 Android 上不能执行代码，C++ 原生模组的库必须放在私有目录才能加载；模组也不会在运行中被别的程序改动。
 
 > [!NOTE]
 > 这个位置是应用的 `Android/media` 目录：游戏不需要任何存储权限就能读写，文件管理器和编辑器也能打开，别的程序或 `adb` 放进去的文件游戏也读得到。我在 Android 16 的 vivo 手机上试过，`Documents`、`Download` 这类公共目录不行（游戏读不到不是它自己创建的文件），`Android/data` 则在新版 Android 上多数文件管理器打不开，所以选了 `Android/media`。
 
-**从旧版本升级**：早期版本的数据在 `/sdcard/Android/data/com.android1939.kardsapk/files/kmod/`。第一次启动新版本时，如果新位置还没有数据，加载器会把旧位置的 `mods/`、`data/`、`inbox/` 和 `state.json` 搬过去，并在旧目录里留一个 `MOVED.txt`。旧的日志和 `dev/` 不会搬。
+**从旧版本升级**：早期版本的数据在 `/sdcard/Android/data/com.android1939.kardsapk/files/kmod/`。第一次启动新版本时，如果新位置还没有数据，加载器会把旧位置的 `mods/`、`data/` 和 `state.json` 搬过去，并在旧目录里留一个 `MOVED.txt`。旧的日志和 `dev/` 不会搬。
 
 ## 确认装好了
 

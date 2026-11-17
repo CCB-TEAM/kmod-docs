@@ -26,7 +26,7 @@ Http.post("https://example.com/api", { hello = "kmod" }, function(resp) ... end)
 | `Http.get(url [, opts], cb)` | GET |
 | `Http.post(url, body [, opts], cb)` | POST。`body` 是字符串，或表（编码成 JSON，并自动加 `Content-Type: application/json`） |
 | `Http.request(opts, cb)` | 通用：`opts.method`、`opts.url`、`opts.body`、`opts.headers` |
-| `Http.download(url, path [, opts], cb [, progress])` | 把响应体**流式写入文件**，不占内存。`path` 必须在 `kmod/data`、`inbox`、`paks` 或 `art` 里，父目录自动创建。`cb(resp)` 成功时有 `resp.saved`、`resp.size`；`progress(bytes, total)` 每秒约 6 次（`total` 未知时是 -1） |
+| `Http.download(url, path [, opts], cb [, progress])` | 把响应体**流式写入文件**，不占内存。`path` 必须在 `kmod/data`、`mods`、`paks` 或 `art` 里，父目录自动创建。`cb(resp)` 成功时有 `resp.saved`、`resp.size`；`progress(bytes, total)` 每秒约 6 次（`total` 未知时是 -1） |
 | `Http.json(resp)` | `resp.body` 解析成 Lua 值，失败返回 `nil` |
 
 `opts` 的字段：`headers`（表，名字 → 值）、`timeout`（毫秒，默认 15000，范围 1000–60000）、`max_bytes`（响应体上限，默认 8 MB）。

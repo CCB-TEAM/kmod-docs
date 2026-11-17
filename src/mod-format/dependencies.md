@@ -35,7 +35,7 @@
 | 循环依赖 | `dependency cycle` |
 | 写法错误（如 `"kmod>>1"`） | `bad dependency ...`，视为模组错误 |
 
-`.kmod` 安装时同样检查 `kmod` / `kards` 的条件和写法，不通过的包移到 `inbox/failed/`，旁边的 `.txt` 写明原因。
+`.kmod` 安装时同样检查 `kmod` / `kards` 的条件和写法，不通过的包不会被解压，原因写在日志里。
 
 ## 在脚本里比较版本
 

@@ -20,7 +20,8 @@
 - **布局检测与缓存**：用 MobileDumper-7 的检测在游戏进程里取得引擎的结构布局，按游戏版本缓存，和核心里的 SDK 对比；不一致时不加载模组（见[版本支持](concepts/version-support.md)）。控制台 `layout`。
 - **运行时反射布局**：核心的反射读取改走 `reflect.h` 的运行时布局表，检测到的引擎布局会被采用；引擎函数按类名、函数名、参数名调用，不再用 SDK 强类型包装。布局偏移变了不必重编译核心（见[版本支持](concepts/version-support.md)）。
 - **安装器**（Android 应用）：在手机上选游戏、检查、注入、签名并安装，不需要电脑（见[安装器](guide/installer.md)）。
-- 核心启动时就创建 `mods`、`inbox`、`paks`、`data` 目录。
+- 核心启动时就创建 `mods`、`paks`、`data` 目录。
+- **`inbox` 文件夹取消**：模组文件夹和 `.kmod` 文件统一放进 `kmod/mods/`。加载器启动（和打开 Mods 页）时把它们同步到应用的私有目录再加载：文件夹复制，`.kmod` 自动解压；原文件保留，删除后私有副本跟着删除。C++ 原生模组的库也因此不再需要再复制一次。
 - **注入工具**（`tools/kmod_inject.py`）：检查 APK 能不能注入（引擎库、启动类、防篡改、是否已注入），并生成注入后已签名的 APK。启动类从清单读出，不再写死 `SplashActivity`。见[注入工具](guide/injector.md)。
 - **核心的版本依赖**：包名运行时读取；`FFrame` 偏移运行时学习；启动自检（金丝雀）验证对象表、`FString`、`FText`、`TArray` 布局，不对就不加载模组。
 - **C++ 模组**：`mod.json` 的 `native` 字段，库先复制到私有目录再加载；`kmod.h` 提供稳定的 C 接口（内联钩子、签名扫描、反射、UFunction 钩子、tick、注册 Lua 函数）；模板 `kmod-native-template`；内联钩子能重定位开头 4 条指令里的 `ADR/ADRP/LDR/B/BL`。见 [C++ 模组](guide/native-mods.md)。

@@ -12,7 +12,7 @@
 | `kmod.game_version` | 完整的游戏版本，如 `"1.61.27596"`；读不到时为 `nil` |
 | `kmod.version_satisfies(have, cond)` | 版本比较，如 `kmod.version_satisfies("1.101", ">=1.61")` → `true` |
 | `kmod.max_errors` | 自动禁用的错误次数阈值（10） |
-| `kmod.paths` | 路径表：`files`、`mods`、`dev`、`logs` |
+| `kmod.paths` | 路径表：`files`、`root`（`kmod/`）、`mods`（`kmod/mods/`，用户放模组的地方）、`private`（应用私有的 kmod 目录，模组从 `<private>/mods` 加载）、`dev`、`logs` |
 | `kmod.tree(widget, depth)` / `kmod.print_tree(widget, depth)` | 打印控件树，调试界面用 |
 
 开发版额外有 `kmod.debug_crash("segv")` 和 `kmod.debug_crash("abort")`，主动制造崩溃，用于测试崩溃日志；正式版没有。
