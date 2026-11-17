@@ -3,9 +3,13 @@
 
 安装器是一个单独的 Android 应用（`kmod 安装器`）。它在手机上完成注入的全部步骤：选一个已安装的游戏、检查能不能注入、注入 kmod loader、安装结果。和[注入工具](injector.md)做的是同一件事，只是不需要电脑。
 
+## 下载
+
+在 [GitHub Releases](https://github.com/CCB-TEAM/KMod-Loader-Android/releases) 下载最新的 `kmod-installer-*.apk`（目前是预发布版本），旁边的 `.sha256` 文件是校验值。
+
 ## 使用
 
-1. 安装 `kmod-installer.apk`，打开它。
+1. 安装 `kmod-installer-*.apk`，打开它。
 2. 列表里是手机上已安装的 64 位虚幻引擎游戏。点 KARDS。
 3. 检查页显示包名、SDK 版本、启动类、引擎库和版本、补丁位置，以及警告和错误。显示"可以注入"后点**注入并安装**。
 4. 第一次需要在系统设置里允许"kmod 安装器"安装其他应用，按提示打开开关再回来重试。
