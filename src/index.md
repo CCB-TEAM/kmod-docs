@@ -1,13 +1,13 @@
 
 # kmod loader
 
-**kmod loader**（简称 **kmod**）是 KARDS 的 Lua 模组加载器。它不依赖 UE4SS，也不是 pak 模组：模组是你自己写的 Lua 脚本，通过虚幻引擎的反射系统读写游戏对象、调用游戏函数，还能加载 pak 里的资源。目前只有 Android 版，Windows 版在计划中。
+**kmod loader**（简称 **kmod**）是 KARDS 的 Lua 模组加载器。它不依赖 UE4SS，也不是 pak 模组：模组是你自己写的 Lua 脚本，通过虚幻引擎的反射系统读写游戏对象、调用游戏函数，还能加载 pak 里的资源。有 Android 版和 Windows 版（Windows 版目前是 pre-release）。
 
 | | |
 |---|---|
 | 加载器版本 | 0.3.0（`kmod.version`） |
 | 接口级别 | 1（`kmod.api`） |
-| 适配的游戏版本 | KARDS 1.61（UE 5.6，arm64） |
+| 适配的游戏版本 | KARDS 1.61（UE 5.6）：Android arm64、Windows x64 |
 | 许可证 | MIT |
 
 ## 能做什么
@@ -17,13 +17,15 @@
 - **游戏内 Mods 页**：嵌在游戏自己的设置界面里，启用、禁用、改设置、看状态。
 - **控制台指令**：内置查询和管理指令，模组可以注册自己的指令。
 - **日志与崩溃记录**：滚动日志文件，原生崩溃处理，崩溃信息写进日志。
-- **开发版**：悬浮控制台、热加载核心和脚本。
+- **开发版**：Android 有悬浮控制台，Windows 有控制台窗口，都能热加载脚本。
+- **游戏内菜单**（Windows）：按 Insert 打开的 ImGui 菜单，管理模组、看日志、执行指令（见[游戏内菜单](guide/overlay.md)）。
+- **C++ 模组**：同一份源码可以编成 Android 的 `.so` 或 Windows 的 `.dll`（见 [C++ 模组](guide/native-mods.md)）。
 
 ## 从哪里开始
 
 | 我想…… | 去看 |
 |---|---|
-| 装上加载器 | [安装](guide/installation.md) |
+| 装上加载器 | [Android 安装](guide/installation.md)、[Windows 安装](guide/installation-windows.md) |
 | 写第一个模组 | [第一个模组](guide/first-mod.md) |
 | 理解钩子、游戏线程、对象有效性 | [概念](concepts/index.md) |
 | 查某个函数怎么用 | [Lua API](lua-api/index.md) |

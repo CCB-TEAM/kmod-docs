@@ -1,5 +1,8 @@
 
-# 安装
+# 安装（Android）
+
+> [!NOTE]
+> 这是 Android 版的安装。Windows 版见[安装（Windows）](installation-windows.md)。
 
 kmod 以打过补丁的 APK 形式发布，不需要 root。你需要官方渠道获得的 KARDS APK。
 

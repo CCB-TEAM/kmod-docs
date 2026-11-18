@@ -1,7 +1,7 @@
 
 # C++ 模组
 
-C++ 模组是一个 `arm64-v8a` 的共享库（`.so`），和 Lua 部分放在同一个包里。它适合 Lua 做不到或做得慢的事：钩引擎里没有反射信息的 C++ 函数、按签名找地址、每帧要跑的计算、链接现成的 C/C++ 库。
+C++ 模组是一个共享库（Android：`arm64-v8a` 的 `.so`；Windows：x64 的 `.dll`），和 Lua 部分放在同一个包里。它适合 Lua 做不到或做得慢的事：钩引擎里没有反射信息的 C++ 函数、按签名找地址、每帧要跑的计算、链接现成的 C/C++ 库。
 
 > [!WARNING]
 > C++ 模组运行在游戏进程里，崩溃就是游戏崩溃。kmod 会记下是哪个模组，下次启动时自动把它关掉（见[安全模式](safe-mode.md)），但这一次的崩溃躲不掉。只装你信任的原生模组。
@@ -118,8 +118,27 @@ kmod::ShowPanel(R"({
 - Lua 部分仍可热重载，但原生部分在一次游戏运行里只启动一次。
 - 安全模式、崩溃隔离对原生模组同样有效：加载或运行时崩溃，下次启动该模组不会加载，直到你重新启用它。
 
+### 同一份源码同时给 Android 和 Windows
+
+`native` 也可以写成按平台的表，`platform` 列出两个平台：
+
+```json
+{ "format": 2, "platform": ["Android", "Windows"],
+  "native": { "Android": "libmy_native_mod.so", "Windows": "my_native_mod.dll" } }
+```
+
+Android 的库放 `native/arm64-v8a/`，Windows 的放 `native/windows-x64/`，同一个包里可以都带。`native` 写成单个字符串仍然可以（只用于 `platform` 里的那个平台）。
+
+源码不用改：`kmod.h` 按编译器自动选导出宏；示例里的 `kmod_mod.cmake` 按工具链选输出位置（NDK 输出 `.so`，MSVC 输出 `.dll`，静态链接运行库）。`kmod.h` 里标了 ANDROID ONLY 的部分（UI 面板、JNI）在 Windows 上是空指针，用之前检查，或看 `api->platform`（`"Android"` / `"Windows"`，级别 3 起有）。
+
+Windows 上的差别：
+- 库不用复制到别处：模组被同步到 `kmod\.private\mods\<id>`，库就在那里被加载。
+- 内联钩子重定位开头至少 14 字节（整条指令），能处理 RIP 相对寻址和 `call`/`jmp`/`jcc` 的相对形式；开头有 `loop`、`jrcxz` 的函数不能钩。
+- 钩子函数和 `original` 用平台默认的 C 调用约定（Microsoft x64）。
+- 构建：`examples\native\build.ps1 <名字> -Install <kmod 目录>`（需要 Visual Studio 的 C++ 工具和 CMake）。示例 `lua_functions`、`param_reader` 的源码和 Android 的完全一样。
+
 ## 编译注意
 
 - 链接 `-static-libstdc++`，游戏没有 `libc++_shared.so`。
 - 符号默认设成隐藏（`-fvisibility=hidden`），只有 `kmod_start`/`kmod_stop` 导出（宏已处理）。
-- 目前只有 Android arm64。`platform` 字段为以后的 Windows 版预留。
+- 平台：Android arm64 和 Windows x64。

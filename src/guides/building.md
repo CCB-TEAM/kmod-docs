@@ -83,6 +83,19 @@ adb install -r kards_mod.apk
 
 ## 已知限制
 
-- 目前只有 Android arm64。Windows 版会复用 Lua 部分，hook 和日志部分需要另写。
+- Android 版见上面的步骤；Windows 版见 [Windows 版的构建](#windows-版的构建)。
 - 暂时没有 C++ 模组接口，模组只能用 Lua。
 - 游戏版本变化后，SDK 偏移要重新转储；模组可以用 `kards>=` 依赖声明自己适用的游戏版本。
+
+## Windows 版的构建
+
+源码在 [KMod-Loader-Windows](https://github.com/CCB-TEAM/KMod-Loader-Windows)。需要 Visual Studio（C++ 工作负载）、CMake、Python 3，以及 Android 版加载器仓库里转储出的 SDK 头文件（路径用 `-DKMOD_SDK_DIR` 指定，构建脚本会自动改成 MSVC 能编的形式）。
+
+```powershell
+cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DKMOD_DEV=ON      # 开发版；正式版用 build-release 和 -DKMOD_DEV=OFF
+cmake --build build --config Release --target kmod_core dwmapi_proxy
+powershell -File tools\stage.ps1 -Game "<游戏>\kards\Binaries\Win64"     # 装进游戏
+powershell -File tools\package.ps1                                         # 在 dist\ 里打包 dev 和 release 两个 zip
+```
+
+`kmod_core.dll` 和 `dwmapi.dll` 都静态链接运行库。代理的导出表由 `tools\gen_proxy_exports.py` 从当前系统的 `dwmapi.dll` 生成。

@@ -1,7 +1,23 @@
 
 # 更新日志
 
-## 0.3.0
+## 0.3.0（Windows，pre-release）
+
+**Windows 版加载器**：和 Android 版同一套 Lua 宿主、模组加载脚本、反射层和 `kmod.h`，平台相关的部分重写。见[安装（Windows）](guide/installation-windows.md)、[Windows 版是怎么工作的](concepts/windows.md)。
+- **注入**：`dwmapi.dll` 代理（99 个导出转发到系统库），不改游戏文件；核心在单独的线程里加载。
+- **引擎地址**：全部运行时从 PE 映像里找（`GObjects`、`GNames`、`ProcessEvent`、Blueprint 解释器和 `GNatives`），不带写死的偏移。
+- **x64 内联钩子**（Zydis）：重定位 RIP 相对寻址和相对跳转，安装时挂起其他线程。
+- **布局检查**：启动时抽样验证反射层的结构偏移，不自洽就不加载模组。
+- **游戏内菜单**：按 Insert 打开的 ImGui 菜单（Mods、Console、About），Direct3D 11 / 12 都支持（见[游戏内菜单](guide/overlay.md)）。
+- **开发版**：控制台窗口、对象转储（`dump objects`）、热加载脚本（见[开发版控制台](guide/dev-console.md)）。
+- **C++ 模组**：`kmod.h` 级别 3，同一份源码可以编成 Android 的 `.so` 或 Windows 的 `.dll`；`mod.json` 的 `native` 可以按平台写成表 `{"Android": "...", "Windows": "..."}`；`api->platform`。见 [C++ 模组](guide/native-mods.md)。
+- **网络**：WinHTTP（`Http`，用系统代理）、Winsock（TCP / UDP）、SChannel（TLS，用系统证书）。
+- **没有的**：pak 模组（没有 `paks` 文件夹）、原生模组的 Android UI / JNI 接口。
+- 修复了一批只在 Windows 上出现的问题：`ProcessEvent` 的虚表槽位、属性的 `ArrayDim` / `ElementSize` 偏移（Windows 与 Android 不同）、`.private` 目录创建、安全模式对短时间运行的误判。
+
+Android 版同步：`kmod.h` 升到级别 3（`platform` 字段），`mod.json` 的 `native` 支持按平台的表。
+
+## 0.3.0 Android
 
 安卓版加载器 0.3.0：C++ 原生模组、包格式 2、UE4SS 兼容补齐、网络层、安装器。
 - `Worker`：独立线程、独立 Lua 状态，消息通信（见 [Worker](lua-api/global-functions/worker.md)）；`ExecuteAsync`（别名）。
@@ -48,7 +64,7 @@
 - 所有数据放在共享存储的 `Android/media/<包名>/kmod/`：游戏不需要存储权限，文件管理器和 `adb` 放进去的文件游戏都读得到；旧位置的数据首次启动时自动搬迁。
 
 **已知缺口**
-- 只有 Android，Windows 版未做。
+- 只有 Android（Windows 版见上面的 Windows 条目）。
 - 没有 USMAP / SDK 头文件转储（`DumpAllObjects`、`DumpAllActors` 有）。
 - 安装器和注入工具只处理完整 APK，分包安装的应用暂不支持。
 

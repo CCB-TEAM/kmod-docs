@@ -93,3 +93,7 @@ layout redetect   忽略缓存，重新检测（约 15 秒；之后用 reload �
 ## 金丝雀检查
 
 引擎就绪后、任何模组运行之前，核心会做一次自检并写进日志（`canaries: object table ok (4096/4096 ...); FString ok; FText ok; TArray ok`）。它检查的都是编译进核心的布局：对象表的几何结构、`FString`、`FText`、`TArray`。对象表和 `FString` 不对时，所有模组读到的都是乱码，所以核心直接把模组全部挡住并在日志和 `layout` 控制台命令里说明原因；`FText` 和 `TArray` 不对只警告。这样游戏更新后，最坏的结果是"模组没加载，原因写在日志里"，而不是读写错误的内存。
+
+## Windows 版
+
+Windows 版同样不信任写死的偏移，而是扫描游戏的 PE 映像，方法见 [Windows 版是怎么工作的](windows.md)。`ProcessEvent` 在 Windows 上是虚表的第 76 槽（Android 的 Itanium ABI 多一个析构槽，是第 77 槽），但 kmod 不依赖这个数字：它在候选函数里按代码特征找，并取最接近 76 的。
