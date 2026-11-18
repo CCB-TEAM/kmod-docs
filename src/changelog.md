@@ -8,7 +8,6 @@
 - **引擎地址**：全部运行时从 PE 映像里找（`GObjects`、`GNames`、`ProcessEvent`、Blueprint 解释器和 `GNatives`），不带写死的偏移。
 - **x64 内联钩子**（Zydis）：重定位 RIP 相对寻址和相对跳转，安装时挂起其他线程。
 - **布局检查**：启动时抽样验证反射层的结构偏移，不自洽就不加载模组。
-- **游戏内菜单**：按 Insert 打开的 ImGui 菜单（Mods、Console、About），Direct3D 11 / 12 都支持（见[游戏内菜单](guide/overlay.md)）。
 - **开发版**：控制台窗口、对象转储（`dump objects`）、热加载脚本（见[开发版控制台](guide/dev-console.md)）。
 - **C++ 模组**：`kmod.h` 级别 3，同一份源码可以编成 Android 的 `.so` 或 Windows 的 `.dll`；`mod.json` 的 `native` 可以按平台写成表 `{"Android": "...", "Windows": "..."}`；`api->platform`。见 [C++ 模组](guide/native-mods.md)。
 - **网络**：WinHTTP（`Http`，用系统代理）、Winsock（TCP / UDP）、SChannel（TLS，用系统证书）。

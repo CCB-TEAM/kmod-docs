@@ -49,15 +49,13 @@ Windows 版**没有 `paks` 文件夹**：不加载 pak 模组。
 
 模组默认是**关闭**的。在游戏里启用：
 
-- 设置页左侧的 **Mods** 标签；或者
-- 按 **Insert** 打开[游戏内菜单](overlay.md)，在 Mods 页勾选。
+- 设置页左侧的 **Mods** 标签。
 
 ## 确认装好了
 
 - 设置页右下角出现 `kmod 0.3.0 release`（开发版是 `dev`）。
 - 设置页左侧多一个 **Mods** 标签。
 - `kmod\logs\kmod.log` 的第一行是 `=== kmod loader 0.3.0 (release, Windows) started ===`。
-- 进入主界面后，按 Insert 能打开菜单。
 
 如果游戏起不来，或者没有出现 Mods 标签，看 `kmod\logs\kmod.log`；如果连 `kmod\logs` 都没有，看 `kmod\proxy.log`，里面会写代理没能加载核心的原因。
 
@@ -71,8 +69,6 @@ Windows 版**没有 `paks` 文件夹**：不加载 pak 模组。
 
 ## 常见问题
 
-**游戏显示崩溃或启动不了。** 连续几次没有正常走到稳定状态，kmod 会自动进入[安全模式](safe-mode.md)（不加载任何模组）。在控制台或菜单的 Console 页输入 `safe off` 可以退出安全模式。
-
-**换了显卡驱动或系统更新后菜单消失。** 菜单需要游戏用 Direct3D 11 或 12 渲染（两种都支持）。日志里 `[overlay]` 开头的几行会写原因。在 `kmod\` 里放一个空文件 `no_overlay` 可以关掉菜单。
+**游戏显示崩溃或启动不了。** 连续几次没有正常走到稳定状态，kmod 会自动进入[安全模式](safe-mode.md)（不加载任何模组）。在开发版控制台里输入 `safe off` 可以退出安全模式。
 
 **走了系统代理。** 模组的 `Http`、WebSocket 请求使用系统的代理设置（和浏览器一样）。

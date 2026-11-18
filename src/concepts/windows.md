@@ -10,7 +10,6 @@ kards-Win64-Shipping.exe
               ├─ 扫描 PE 找 GObjects / GNames / ProcessEvent
               ├─ 内联钩 UObject::ProcessEvent → 取得游戏线程
               ├─ 钩 Blueprint 解释器（脚本函数）
-              ├─ 钩 IDXGISwapChain::Present → ImGui 菜单
               └─ Lua 宿主（和 Android 相同）
 ```
 
@@ -66,7 +65,7 @@ I/layout: engine layout verified: objects 6352/6352, class chains 455/455, funct
 | 原生模组 | `arm64-v8a` 的 `.so` | `windows-x64` 的 `.dll`，同一份源码 |
 | 原生模组的 UI / JNI 接口 | 有 | 没有（接口为空，见 `kmod.h`） |
 | 开发工具 | 悬浮控制台 | 控制台窗口 |
-| 游戏内菜单 | Mods 页 | Mods 页 + Insert 菜单（ImGui） |
+| 游戏内 Mods 页 | 有 | 有（嵌在游戏设置页里） |
 | 网络 | Java 的 `HttpURLConnection` / `SSLSocket` | WinHTTP / Winsock / SChannel（用系统证书和代理） |
 | 崩溃处理 | 信号处理 | 结构化异常处理（向量化异常 + 顶层过滤器） |
 

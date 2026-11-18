@@ -4,7 +4,6 @@
 - [入门](guide/index.md)
   - [安装（Android）](guide/installation.md)
   - [安装（Windows）](guide/installation-windows.md)
-  - [游戏内菜单（Windows）](guide/overlay.md)
   - [开发版控制台（Windows）](guide/dev-console.md)
   - [第一个模组](guide/first-mod.md)
   - [打包成 .kmod](guide/packaging.md)
