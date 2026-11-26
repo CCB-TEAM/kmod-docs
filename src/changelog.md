@@ -1,6 +1,11 @@
 
 # 更新日志
 
+## KMod Launcher 1.1.0（2026-11-26）
+
+- 「发现」页显示模组的下载量和 GitHub 星标数，点星标打开模组仓库；可以按下载量排序。
+- [模组索引](guide/index-api.md)新增 `downloads` 字段。
+
 ## KMod Launcher 1.0.0（2026-11-26）
 
 [KMod Launcher](guide/launcher.md)：Windows 和 Android 上的加载器安装器与模组管理器。新增「发现」页（浏览、下载社区模组）、模组图标、原生模组安装警告、含 Pak 模组包的安装与覆盖确认、模组页刷新、GitHub 下载代理；Android 版内置加载器 0.4.0 的安装器。

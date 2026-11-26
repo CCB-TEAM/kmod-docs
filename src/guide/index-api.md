@@ -42,6 +42,7 @@ GitHub Actions 大约每 3 小时生成一次（定时任务可能延迟）。�
       "cover": "covers/card_art.jpg",
       "repo": "https://github.com/CCB-TEAM/kmod-card-art",
       "stars": 0,
+      "downloads": 25,
       "updated": "2026-11-26",
       "verified": false,
       "versions": [
@@ -54,6 +55,7 @@ GitHub Actions 大约每 3 小时生成一次（定时任务可能延迟）。�
           "platforms": ["Android", "Windows"],
           "native": false,
           "paks": false,
+          "downloads": 20,
           "permissions": [],
           "depends": ["kmod>=0.4.0", "kards>=1.61"]
         }
@@ -84,6 +86,7 @@ GitHub Actions 大约每 3 小时生成一次（定时任务可能延迟）。�
 | `cover` | 字符串 | 否 | 预览图地址，建议约 20:9 |
 | `repo` | 字符串 | 是 | 模组仓库网页地址（本地生成的索引里为空） |
 | `stars` | 整数 | 是 | 仓库星标数，生成时的值 |
+| `downloads` | 整数 | 否 | 该仓库所有 Release 里 `.kmod` 附件的下载次数之和（包括没有列出的旧版本）。本地生成的索引没有这个字段 |
 | `updated` | 字符串 | 是 | 最新版本的发布日期 `YYYY-MM-DD` |
 | `verified` | 布尔 | 是 | 维护者是否标记为已验证。**不代表绝对安全** |
 | `versions` | 数组 | 是 | 至少一个，最多 5 个，新的在前（GitHub 发布列表的顺序） |
@@ -96,6 +99,7 @@ GitHub Actions 大约每 3 小时生成一次（定时任务可能延迟）。�
 | `url` | 字符串 | `.kmod` 下载地址 |
 | `sha256` | 字符串 | 生成索引时文件的 SHA-256，64 位十六进制 |
 | `size` | 整数 | 字节数 |
+| `downloads` | 整数 | 这个版本附件的下载次数（GitHub 的计数，扣掉索引生成器自己下载的那一次）。可能缺省 |
 | `published` | 字符串 | 发布日期 `YYYY-MM-DD` |
 | `platforms` | 字符串数组 | `"Android"`、`"Windows"` |
 | `native` | 布尔 | 含 C++ 原生代码 |
