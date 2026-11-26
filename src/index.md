@@ -5,7 +5,7 @@
 
 | | |
 |---|---|
-| 加载器版本 | 0.3.0（`kmod.version`） |
+| 加载器版本 | 0.4.0（`kmod.version`） |
 | 接口级别 | 1（`kmod.api`） |
 | 适配的游戏版本 | KARDS 1.61（UE 5.6）：Android arm64、Windows x64 |
 | 许可证 | MIT |
@@ -55,4 +55,4 @@ libkmod.so（加载器壳） ──加载──▶ libkmodcore.so（核心）
 | 热加载核心 / 覆盖内置脚本 | 支持（`kmod/dev/`） | 不支持 |
 | 面向 | 模组作者 | 玩家 |
 
-版本行显示在游戏设置页右下角，如 `kmod 0.3.0 release`。
+版本行显示在游戏设置页右下角，如 `kmod 0.4.0 release`。

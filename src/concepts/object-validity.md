@@ -20,6 +20,20 @@ end
 
 长期保存引用时，每次用之前先检查 `IsValid()`，或者每次重新查找。
 
+## 自己创建的对象会被回收
+
+模组创建的对象（比如 `ImportFileAsTexture2D` 导入的贴图），如果**游戏里没有任何对象引用它**，只存在 Lua 变量里，引擎的垃圾回收（大约每 30 秒一次）仍会释放它。需要长期保留、又暂时不显示的贴图（例如动画的各帧），让一个活着的对象引用它，比如挂到正在使用的动态材质上作为一个额外参数：
+
+```lua
+mid:SetTextureParameterValue("KmodKeep1", texture)     -- 材质活着，贴图就活着
+```
+
+材质被游戏换掉时要挂到新的材质上。测试时可以用控制台命令 `obj gc` 立即触发一次回收。
+
+## 计时
+
+做动画要用真实时间。**Android 上 `os.clock()` 返回的是进程占用的处理器时间**，不是经过的时间。用 `StaticFindObject("/Script/Engine.Default__GameplayStatics"):GetRealTimeSeconds(playerController)`。
+
 ## 找不到时返回什么
 
 | 函数 | 找不到时 |

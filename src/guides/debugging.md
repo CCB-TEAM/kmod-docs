@@ -13,13 +13,13 @@ kmod/logs/kmod.4.log     # 最多保留最近 5 次运行
 行格式：
 
 ```
-2026-11-16 13:25:33.180 W/loader: dep_new_mod: requires kmod>=9.0.0 (have 0.3.0)
+2026-11-16 13:25:33.180 W/loader: dep_new_mod: requires kmod>=9.0.0 (have 0.4.0)
 日期   时间(毫秒)         级别/标签: 内容
 ```
 
 - 级别：`D` 调试、`I` 信息、`W` 警告、`E` 错误。**开发版**记录 DEBUG 及以上，**正式版**记录 INFO 及以上。
 - 标签：`core`（核心）、`loader`（模组加载）、`kmod`（日志系统本身）、`lua`（控制台等）、其余是模组 id（`Log.*` 和 `print` 的输出）。
-- 每次运行的第一行是版本头：`=== kmod loader 0.3.0 (release) started ===`，后面有设备信息。
+- 每次运行的第一行是版本头：`=== kmod loader 0.4.0 (release) started ===`，后面有设备信息。
 - Lua 错误会带调用栈。
 - 同样的内容也会输出到 logcat，tag 为 `KModCore`、`KModLoader`：
 

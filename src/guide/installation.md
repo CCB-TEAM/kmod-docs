@@ -43,6 +43,6 @@ kmod 的所有文件都放在手机的共享存储里：
 
 ## 确认装好了
 
-- 游戏设置页右下角出现 `kmod 0.3.0 release`（开发版是 `dev`）。
+- 游戏设置页右下角出现 `kmod 0.4.0 release`（开发版是 `dev`）。
 - 设置页左侧多一个 **Mods** 标签。
-- `kmod/logs/kmod.log`（在上面的 `kmod` 目录里）第一行是 `=== kmod loader 0.3.0 (release) started ===`。
+- `kmod/logs/kmod.log`（在上面的 `kmod` 目录里）第一行是 `=== kmod loader 0.4.0 (release) started ===`。

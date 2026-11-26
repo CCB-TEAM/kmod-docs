@@ -53,9 +53,9 @@ Windows 版**没有 `paks` 文件夹**：不加载 pak 模组。
 
 ## 确认装好了
 
-- 设置页右下角出现 `kmod 0.3.0 release`（开发版是 `dev`）。
+- 设置页右下角出现 `kmod 0.4.0 release`（开发版是 `dev`）。
 - 设置页左侧多一个 **Mods** 标签。
-- `kmod\logs\kmod.log` 的第一行是 `=== kmod loader 0.3.0 (release, Windows) started ===`。
+- `kmod\logs\kmod.log` 的第一行是 `=== kmod loader 0.4.0 (release, Windows) started ===`。
 
 如果游戏起不来，或者没有出现 Mods 标签，看 `kmod\logs\kmod.log`；如果连 `kmod\logs` 都没有，看 `kmod\proxy.log`，里面会写代理没能加载核心的原因。
 

@@ -15,7 +15,7 @@
 
 | id | 含义 | 版本取值 |
 |---|---|---|
-| `kmod` | 加载器本身 | `kmod.version`（如 `0.3.0`） |
+| `kmod` | 加载器本身 | `kmod.version`（如 `0.4.0`） |
 | `kards` | 游戏本体 | 游戏版本号 `x.xx.xxxx` 只取第二个点之前，如 `1.61`、`1.101`（`kmod.game`） |
 
 保留 id 不需要安装，也不参与加载顺序。
@@ -28,7 +28,7 @@
 
 | 情形 | 状态文字 |
 |---|---|
-| 加载器或游戏版本不符 | `requires kmod>=9.0.0 (have 0.3.0)`、`requires kards>=1.101 (have 1.61)` |
+| 加载器或游戏版本不符 | `requires kmod>=9.0.0 (have 0.4.0)`、`requires kards>=1.101 (have 1.61)` |
 | 依赖的模组版本不符 | `dependency version: hello_mod>=2.0.0 required (have 1.0.0)` |
 | 依赖缺失 / 未启用 / 有错误 | `missing dependency: <id>` |
 | 依赖自己加载失败 | `dependency failed: <id>` |
