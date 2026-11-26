@@ -1,7 +1,57 @@
+---
+layout: home
+title: 首页
+hero:
+  name: kmod loader
+  text: KARDS 的模组加载器
+  tagline: 用 Lua 或 C++ 写模组，Windows 和 Android 通用。不依赖 UE4SS，不改游戏资源。
+  image:
+    src: /logo.png
+    alt: kmod
+  actions:
+    - theme: brand
+      text: 安装加载器
+      link: /guide/launcher
+    - theme: alt
+      text: 写第一个模组
+      link: /guide/first-mod
+    - theme: alt
+      text: 查 API
+      link: /lua-api/
+features:
+  - icon: 🧩
+    title: 装模组
+    details: 用 KMod Launcher 安装加载器，在「发现」页浏览和下载社区模组。
+    link: /guide/launcher
+    linkText: KMod Launcher
+  - icon: 📜
+    title: Lua 模组
+    details: 通过虚幻引擎的反射系统读写对象、调用函数、挂钩子，支持热重载。
+    link: /guide/first-mod
+    linkText: 第一个模组
+  - icon: 📦
+    title: .kmod 包
+    details: 清单、设置项、本地化、带版本条件的依赖，还可以带 Pak 文件。
+    link: /mod-format/
+    linkText: 模组包格式
+  - icon: 🎨
+    title: 做界面
+    details: 用游戏自己的控件，或者用 HTML / CSS / JavaScript 做窗口。
+    link: /guides/ui
+    linkText: 做界面
+  - icon: ⚙️
+    title: C++ 模组
+    details: 同一份源码编成 Android 的 .so 或 Windows 的 .dll。
+    link: /guide/native-mods
+    linkText: C++ 模组
+  - icon: 🚀
+    title: 发布分享
+    details: 给仓库加上 kmod-mod 主题并发一个 Release，就会出现在「发现」页。
+    link: /guide/publishing
+    linkText: 发布模组
+---
 
-# kmod loader
-
-**kmod loader**（简称 **kmod**）是 KARDS 的 Lua 模组加载器。它不依赖 UE4SS，也不是 pak 模组：模组是你自己写的 Lua 脚本，通过虚幻引擎的反射系统读写游戏对象、调用游戏函数，还能加载 pak 里的资源。有 Android 版和 Windows 版。
+## 当前版本
 
 | | |
 |---|---|
@@ -10,29 +60,9 @@
 | 适配的游戏版本 | KARDS 1.61（UE 5.6）：Android arm64、Windows x64 |
 | 许可证 | MIT |
 
-## 能做什么
-
-- **Lua 5.4 模组**：读写属性、调用函数、挂钩子、定时器、监听新对象、加载资源。
-- **`.kmod` 包**：一个 zip，带 `mod.json`、设置项、本地化和带版本条件的依赖（`kmod>=0.2.0`、`kards>=1.61`）。
-- **游戏内 Mods 页**：嵌在游戏自己的设置界面里，启用、禁用、改设置、看状态。
-- **控制台指令**：内置查询和管理指令，模组可以注册自己的指令。
-- **日志与崩溃记录**：滚动日志文件，原生崩溃处理，崩溃信息写进日志。
-- **开发版**：Android 有悬浮控制台，Windows 有控制台窗口，都能热加载脚本。
-- **C++ 模组**：同一份源码可以编成 Android 的 `.so` 或 Windows 的 `.dll`（见 [C++ 模组](guide/native-mods.md)）。
-
-## 从哪里开始
-
-| 我想…… | 去看 |
-|---|---|
-| 装上加载器 | [KMod Launcher](guide/launcher.md)（最简单）、[Android 安装](guide/installation.md)、[Windows 安装](guide/installation-windows.md) |
-| 下载别人的模组 / 发布自己的 | [KMod Launcher](guide/launcher.md)、[发布模组](guide/publishing.md) |
-| 写第一个模组 | [第一个模组](guide/first-mod.md) |
-| 理解钩子、游戏线程、对象有效性 | [概念](concepts/index.md) |
-| 查某个函数怎么用 | [Lua API](lua-api/index.md) |
-| 看现成的例子 | [示例](guides/examples.md) |
-| 从 UE4SS 迁移脚本 | [从 UE4SS 迁移](guides/migrating-from-ue4ss.md) |
-
 ## 它是怎么工作的
+
+Android 版如下；Windows 版见 [Windows 版是怎么工作的](concepts/windows.md)。
 
 ```
 官方 APK ──(改 SplashActivity，加 System.loadLibrary("kmod"))──▶ 打补丁的 APK
