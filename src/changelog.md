@@ -1,6 +1,13 @@
 
 # 更新日志
 
+## KMod Launcher 1.2.0（2026-11-26）
+
+- 启动器可以检查并安装自身的更新。
+- 首次启动引导：选主题、设置 GitHub 代理（预设 `gh-proxy.com`、`gh-proxy.org`）。
+- Android：引导里申请文件访问和「获取应用列表」权限，未授权时不能使用；修复 Android 10 及以下从不申请存储权限（`Operation not permitted`）。
+- Android：沉浸模式，导航栏不再遮挡界面。
+
 ## KMod Launcher 1.1.0（2026-11-26）
 
 - 「发现」页显示模组的下载量和 GitHub 星标数，点星标打开模组仓库；可以按下载量排序。
