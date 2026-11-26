@@ -1,12 +1,20 @@
 
 # 更新日志
 
-## 0.4.0（Android 与 Windows，尚未发布）
+## KMod Launcher 1.0.0（2026-11-26）
 
+[KMod Launcher](guide/launcher.md)：Windows 和 Android 上的加载器安装器与模组管理器。新增「发现」页（浏览、下载社区模组）、模组图标、原生模组安装警告、含 Pak 模组包的安装与覆盖确认、模组页刷新、GitHub 下载代理；Android 版内置加载器 0.4.0 的安装器。
+
+## 0.4.0（Android 与 Windows，2026-11-26）
+
+- 模组包可以带 [Pak 模组](mod-format/paks.md)（`mod.json` 的 `paks`，按 SHA-256 校验），更新前提示；纯 pak 的包可以没有 `main.lua`。
 - **网页界面**：[`UI.web`](lua-api/mod-env/web.md)，用 HTML / CSS / JavaScript 做无边框窗口，可拖动、缩放（松手后生效，带预览框）、限制最小和最大尺寸。
 - **输入与文件**：[`Input`](lua-api/mod-env/input.md)（电脑端键盘）；[`Media`](lua-api/mod-env/media.md) 可以选图片、选任意文件、另存为、打 zip。
 - **模组页**：新增「重载所有模组」按钮，每个已启用的 Lua 模组下有「重载」按钮；Lua 里是 [`kmod.reload_mod(id)`](lua-api/mod-env/kmod.md)。
 - **工具函数**：`kmod.gif_frames`（把 GIF 拆成 PNG 帧，可裁切）、`kmod.base64`。
+- 没有任何反射字段的引擎结构体（如 `FGeometry`）现在能原样传回引擎函数，`SlateBlueprintLibrary` 等可以用了。
+- Windows 版不再标为预发布。
+- Android：安装器更新到 0.2.0，内置加载器 0.4.0。
 - Windows：调整启动时机，模组更早开始加载（可用 `kmod\boot\delays.txt` 调整）。
 
 ## 0.3.0（Windows，pre-release）

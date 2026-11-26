@@ -7,6 +7,7 @@
 hello_mod/                 # 文件夹名 = 模组 id
 ├── mod.json               # 清单（必需）
 ├── main.lua               # 入口（必需）
+├── icon.png               # 图标（建议），见下面「图标」
 ├── lang/                  # 本地化（可选）
 │   ├── en.json
 │   └── zh-CN.json
@@ -28,6 +29,7 @@ hello_mod/                 # 文件夹名 = 模组 id
   "version": "1.0.0",
   "author": "kmod",
   "description": "A demo mod.",
+  "icon": "icon.png",
   "depends": ["kmod>=0.2.0", "kards>=1.61"],
   "settings": [
     {"id":"verbose","type":"bool","label":"Verbose log","default":false},
@@ -47,11 +49,22 @@ hello_mod/                 # 文件夹名 = 模组 id
 | `name` | 否 | 默认显示名（通常英文）；缺省用 id |
 | `author` | 否 | 作者 |
 | `description` | 否 | 说明，显示在 Mods 页该模组的版本行上方；有 `lang` 翻译时用翻译 |
+| `icon` | 否 | 图标在包里的相对路径，缺省是根目录的 `icon.png`。见下面「图标」 |
 | `api` | 否 | 需要的加载器接口级别，高于当前（`kmod.api`）就拒绝加载。新模组建议改用 `kmod>=x.y.z` |
 | `depends` | 否 | 依赖列表，见[依赖与版本条件](dependencies.md) |
 | `native` | 否 | C++ 模组的库文件名，在包里的 `native/arm64-v8a/` 下找。必须同时是 `"format": 2` 并写 `platform`；有 `native` 时 `main.lua` 可以没有。见 [C++ 模组](../guide/native-mods.md) |
+| `paks` | 否 | 包里带的 pak 文件和各自的 SHA-256，见[模组包里的 Pak](paks.md)。有 `paks` 时 `main.lua` 可以没有 |
 | `permissions` | 否 | 权限声明列表。目前只有 `"network"`：允许使用 [`Http`](../lua-api/mod-env/http.md)、[WebSocket 与 Socket](../lua-api/mod-env/sockets.md)；`"game_network"`：允许使用 [`Net`](../lua-api/mod-env/net.md)（观察和修改游戏自己的 WebSocket 消息）。不认识的权限会被忽略并警告 |
 | `settings` | 否 | 设置项，见[设置项](settings.md) |
+
+## 图标
+
+启动器的模组列表（以及以后的模组分发页面）显示每个模组的图标。
+
+- 放在包根目录的 `icon.png`，或在 `mod.json` 里用 `icon` 指定别的相对路径。
+- 格式 PNG、JPG 或 WebP；建议正方形、256×256，不超过 512 KB。超过或读不出时按没有图标处理，列表里不显示图标。
+- 路径不能以 `/` 开头、不能带 `..` 或 `:`。
+- 加载器本身不读图标，没有图标的包照常加载。
 
 ## 从旧布局迁移
 

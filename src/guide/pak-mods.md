@@ -7,6 +7,8 @@
 /sdcard/Android/media/com.android1939.kardsapk/kmod/paks/
 ```
 
+pak 也可以装在模组包里分发，带版本号和更新提示，见[模组包里的 Pak](../mod-format/paks.md)。
+
 ## 工作方式
 
 - 游戏引擎就绪后（启动约 10 秒内、早于模组脚本加载），`kmod/paks/` 里的每个 `.pak` 按文件名排序挂载，每次游戏运行只挂载一次。挂载由核心直接完成，不依赖任何模组。
@@ -19,6 +21,7 @@
 
 ```
 paks              列出 kmod/paks 里的 pak 和状态（mounted / failed / switched off / skipped ...）
+paks confirm      列出等待确认的模组包 pak 更新；paks confirm <文件名.kmod> 确认安装
 paks off <文件>   关掉某个 pak：下次启动起不再挂载（已经挂载的要重启才会消失）
 paks on <文件>    重新打开
 ```

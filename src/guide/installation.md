@@ -6,7 +6,7 @@
 
 kmod 以打过补丁的 APK 形式发布，不需要 root。你需要官方渠道获得的 KARDS APK。
 
-**最简单的办法**：用[安装器](installer.md)，它在手机上完成检查、注入、签名和安装。下面是手动的做法（电脑上用[注入工具](injector.md)，或者自己构建）。
+**最简单的办法**：用 [KMod Launcher](launcher.md) 里内置的安装器，或单独的[安装器](installer.md)，它在手机上完成检查、注入、签名和安装。下面是手动的做法（电脑上用[注入工具](injector.md)，或者自己构建）。
 
 1. 按[构建加载器](../guides/building.md)生成 `kards_mod.apk`（正式版）或 `kards_mod_dev.apk`（开发版）。
 2. 安装。补丁 APK 用你自己的签名，和官方签名不同，所以不能覆盖安装官方版：需要先卸载官方版，或者覆盖同一把签名的旧补丁版（`adb install -r`）。
@@ -25,6 +25,7 @@ kmod 的所有文件都放在手机的共享存储里：
 /sdcard/Android/media/com.android1939.kardsapk/kmod/
 ├── mods/               # 模组：文件夹，或 .kmod 文件（启动时同步到应用私有目录再加载）
 ├── paks/               # pak 模组（启动时自动挂载）
+├── pak-staged/         # 等下次启动时替换的 pak（模组包更新）
 ├── data/<id>/          # 模组的用户数据（设置值）
 ├── logs/               # kmod.log 等日志
 ├── state.json          # 启用列表和语言

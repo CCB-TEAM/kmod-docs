@@ -12,6 +12,8 @@ Windows 版 kmod 是两个文件：一个 `dwmapi.dll`（代理）和一个 `kmo
 
 ## 安装步骤
 
+最简单的办法是用 [KMod Launcher](launcher.md)，选好游戏目录后点安装。下面是手动安装。
+
 1. 关掉游戏。
 2. 找到游戏的程序目录，也就是放着 `kards-Win64-Shipping.exe` 的那个：
 
@@ -43,7 +45,7 @@ Windows 版 kmod 是两个文件：一个 `dwmapi.dll`（代理）和一个 `kmo
     └── .private\           # 加载器自己用：模组的私有副本
 ```
 
-Windows 版**没有 `paks` 文件夹**：不加载 pak 模组。
+Windows 版**没有 `kmod\paks` 文件夹**：pak 模组放在游戏自己的 `<游戏>\kards\Content\Paks`，由游戏加载。[模组包里的 pak](../mod-format/paks.md) 由加载器或启动器装到那里。
 
 **装模组就是把文件放进 `kmod\mods\`**：模组文件夹或 `.kmod` 文件。加载器启动时，或者你打开 Mods 页时，会把它们同步到 `kmod\.private\mods\`（`.kmod` 自动解压）再从那里加载。你可以在游戏运行时替换 `mods\` 里的文件，下次同步时生效。
 

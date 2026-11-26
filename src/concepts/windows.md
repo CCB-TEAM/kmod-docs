@@ -61,7 +61,7 @@ I/layout: engine layout verified: objects 6352/6352, class chains 455/455, funct
 |---|---|---|
 | 注入 | 改 APK，加载 `libkmod.so` | `dwmapi.dll` 代理，游戏文件不动 |
 | 数据目录 | `/sdcard/Android/media/<包名>/kmod/` | `<游戏>\kards\Binaries\Win64\kmod\` |
-| pak 模组 | 支持（`kmod/paks`） | 不支持 |
+| pak 模组 | 加载器挂载 `kmod/paks` | 游戏自己加载 `Content\Paks`（加载器只负责安装[模组包里的 pak](../mod-format/paks.md)） |
 | 原生模组 | `arm64-v8a` 的 `.so` | `windows-x64` 的 `.dll`，同一份源码 |
 | 原生模组的 UI / JNI 接口 | 有 | 没有（接口为空，见 `kmod.h`） |
 | 开发工具 | 悬浮控制台 | 控制台窗口 |

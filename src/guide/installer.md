@@ -5,7 +5,7 @@
 
 ## 下载
 
-在 [GitHub Releases](https://github.com/CCB-TEAM/KMod-Loader-Android/releases) 下载最新的 `kmod-installer-*.apk`（目前是预发布版本），旁边的 `.sha256` 文件是校验值。
+在 [GitHub Releases](https://github.com/CCB-TEAM/KMod-Loader-Android/releases) 下载最新的 `kmod-installer-*.apk`，旁边的 `.sha256` 文件是校验值。同样的功能也内置在 [KMod Launcher](launcher.md) 的 Android 版里。
 
 ## 使用
 

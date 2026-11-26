@@ -1,7 +1,7 @@
 
 # kmod loader
 
-**kmod loader**（简称 **kmod**）是 KARDS 的 Lua 模组加载器。它不依赖 UE4SS，也不是 pak 模组：模组是你自己写的 Lua 脚本，通过虚幻引擎的反射系统读写游戏对象、调用游戏函数，还能加载 pak 里的资源。有 Android 版和 Windows 版（Windows 版目前是 pre-release）。
+**kmod loader**（简称 **kmod**）是 KARDS 的 Lua 模组加载器。它不依赖 UE4SS，也不是 pak 模组：模组是你自己写的 Lua 脚本，通过虚幻引擎的反射系统读写游戏对象、调用游戏函数，还能加载 pak 里的资源。有 Android 版和 Windows 版。
 
 | | |
 |---|---|
@@ -24,7 +24,8 @@
 
 | 我想…… | 去看 |
 |---|---|
-| 装上加载器 | [Android 安装](guide/installation.md)、[Windows 安装](guide/installation-windows.md) |
+| 装上加载器 | [KMod Launcher](guide/launcher.md)（最简单）、[Android 安装](guide/installation.md)、[Windows 安装](guide/installation-windows.md) |
+| 下载别人的模组 / 发布自己的 | [KMod Launcher](guide/launcher.md)、[发布模组](guide/publishing.md) |
 | 写第一个模组 | [第一个模组](guide/first-mod.md) |
 | 理解钩子、游戏线程、对象有效性 | [概念](concepts/index.md) |
 | 查某个函数怎么用 | [Lua API](lua-api/index.md) |
