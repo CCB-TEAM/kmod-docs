@@ -1,6 +1,10 @@
 
 # 更新日志
 
+## KMod Launcher 1.2.4 / 安装器 0.2.2（2026-11-27）
+
+- 修复 Android 上注入失败（`FileNotFoundException: …/files/keys/signing.pk8`）：手机上已有签名密钥的备份（重装过启动器、清除过数据，或用过独立安装器）时，恢复密钥前没有创建文件夹。修复后用回原来的密钥，注入后的游戏可以直接覆盖安装。
+
 ## KMod Launcher 1.2.3（2026-11-26）
 
 - 电脑版也能调整 Pak 模组的加载顺序：通过改文件名（`原名.kmod_<序号>_P.pak`）设定游戏的 pak 优先级，见 [KMod Launcher](guide/launcher.md#模组)。
